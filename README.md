@@ -9,9 +9,9 @@
  ┃   /* dockerコンテンツ用イメージ app && op 以外は dockerhub から取得されます */
  ┣━ (d) IMG/
  ┃   ┃  
- ┃   ┣━ (f) forestp-ap.v{number}.{Ymd}.tar.xz	... (5.6G) app鯖 2025/03/31 v.1.2 です。
+ ┃   ┣━ (f) forestp-ap.v{number}.{Ymd}.tar.xz	... (5.6G) app鯖 25' 03/31 v.1.2 です。
  ┃   ┃
- ┃   ┗━ (f) forestp-op.v{number}.{Ymd}.tar.xz	... (3.6G) op鯖 * crontab -l はすべてコメントしています。
+ ┃   ┗━ (f) forestp-op.v{number}.{Ymd}.tar.xz	... (3.6G) op鯖 25' 04/02 v.1.2 です。
  ┃
  ┃   /* コンテンツ用ディレクトリ */
  ┣━ (d) forest/
