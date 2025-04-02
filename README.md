@@ -82,21 +82,24 @@ mysql> FLUSH PRIVILEGES;
 
 #### 対応
 非推奨ではあるが、/etc/rc.local からの実行が複数回の事項ですべて流し込み完了を確認。
+```
+/lib/systemd/system/rc-local.service
+-> After=network.target mysqld.service
+```
+mysqld が起動完了してから rc.local を実行へ修正
 
-/lib/systemd/system/rc-local.service<br>
--> After=network.target mysqld.service<br>
-mysqld が起動完了してから rc.local を実行へ修正<br>
-
-/etc/rc.local ( perm 0755 )<br>
--> /bin/sh /docker-entrypoint-initdb.d/init_db.sh<br>
-init_db の実行権限がない場合に備えて sh シェルに喰わせる。<br>
+```
+/etc/rc.local ( perm 0755 )
+-> /bin/sh /docker-entrypoint-initdb.d/init_db.sh
+```
+init_db の実行権限がない場合に備えて sh シェルに喰わせる。
 
 2025/03/31 時点のデータ 2.reforest.insert.sql 19MB<br>
 コンテナ起動から流し込み完了まで、3分程かかります。<br>
 mysqldump 時に --skip-extended-insert を使用しているので、<br>
 1行出力やめればもっと早くはなります。
 
-### minio コンテナ注意点
+*** minio コンテナ注意点 ***
 docker-compose.yml 指定の環境変数が以下非推奨となり指定しても使用できません。
 
 ##### 非推奨
