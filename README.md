@@ -140,7 +140,7 @@ cron テキスト修正した場合は、以下でエラーが出ないか確認
 /lib/systemd/system/rc-local.service
 -> After=network.target crond.service
 ```
-* ./cron.sh { add /del }
+* ./cron.sh { add / del } 一応削除もできるよ。テストの名残。
 ```
 /etc/rc.local ( perm 0755 )
 -> /bin/bash /docker-entrypoint-cron.d/cron.sh add
