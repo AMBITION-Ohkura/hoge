@@ -101,19 +101,24 @@ mysqldump 時に --skip-extended-insert を使用しているので、1行出力
 docker-compose.yml 指定の環境変数が以下非推奨となり
 指定しても使用できません。
 
-（非推奨）
- MINIO_ACCESS_KEY={xxxxxxxxxxxxxxxx}
- MINIO_SECRET_KEY={xxxxxxxxxxxxxxxx}
+#### 非推奨
+```
+MINIO_ACCESS_KEY={xxxxxxxxxxxxxxxx}
+MINIO_SECRET_KEY={xxxxxxxxxxxxxxxx}
+```
 
-（管理画面用アカウント）
- MINIO_ROOT_USER=minio
- MINIO_ROOT_PASSWORD=minio123
+#### 管理画面用アカウント
+```
+MINIO_ROOT_USER=minio
+MINIO_ROOT_PASSWORD=minio123
+```
 
-（接続先設定参考）
-	endpoint = http://minio:9000
-	key	 = minio
-	secret	 = minio123
-
+#### 接続先設定参考
+```
+endpoint = http://minio:9000
+key	 = minio
+secret	 = minio123
+```
 
 #### URL
 ## Top
@@ -148,7 +153,7 @@ http://localhost:28080/
 
 #### php-fpm php で使用するメールを mhsendmail へ変更
 ```
-/etc/php.ini
+[forestp]# vi /etc/php.ini
 982c982
 < sendmail_path = /usr/sbin/sendmail -t -i
 ---
@@ -158,7 +163,7 @@ http://localhost:28080/
 ## 修正 fuelphp
 #### mhsendmail では使用できないオプションがあるためオプションを削除する。
 ```
-/var/www/forest/bundle/lib/fuel/packages/email/classes/email/driver/mail.php
+[forestp]# vi /var/www/forest/bundle/lib/fuel/packages/email/classes/email/driver/mail.php
 30c30
 <               if ( ! @mail(static::format_addresses($this->to), $this->subject, $message['body'], $message['header'], '-oi -f '.$return_path))
 ---
