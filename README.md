@@ -98,7 +98,7 @@ init_db の実行権限がない場合に備えて sh シェルに喰わせる�
 mysqldump 時に --skip-extended-insert を使用しているので、<br>
 1行出力やめればもっと早くはなります。
 
-*** minio コンテナ注意点 ***
+## minio コンテナ注意点
 docker-compose.yml 指定の環境変数が以下非推奨となり指定しても使用できません。
 
 ##### 非推奨
