@@ -22,12 +22,12 @@
  ┃  ┃　┣━ (d) forest/				... (app&&op) /var/www/forest/
  ┃  ┃  ┃
  ┃  ┃　┗━ (d) initdb.d/				... (app) /docker-entrypoint-initdb.d/
- ┃  ┃      ┃  
- ┃  ┃      ┣━ (f) init_db.sh			... (app) /etc/rc.local にて実行定義。docker-compose run 時のみ実行される想定作成。
- ┃  ┃      ┃
- ┃  ┃      ┣━ (f) 1.reforest.tbl.sql		... (app/500KB) テーブル定義。
- ┃  ┃      ┃
- ┃  ┃      ┗━ (f) 2.reforest.insert.sql		... (app/19MB)	DBデータ。流し込み完了まで3分程度かかります。
+ ┃  ┃     ┃  
+ ┃  ┃     ┣━ (f) init_db.sh			... /etc/rc.local にて実行定義。docker-compose run 時のみ実行される想定作成。
+ ┃  ┃     ┃
+ ┃  ┃     ┣━ (f) 1.reforest.tbl.sql		... (500KB) テーブル定義。
+ ┃  ┃     ┃
+ ┃  ┃     ┗━ (f) 2.reforest.insert.sql		... (19MB)  DBデータ。流し込み完了まで3分程度かかります。
  ┃  ┃
  ┃  ┃   /* minio コンテナ用 S3互換環境構築 */
  ┃  ┣━ (d) minio/
@@ -35,7 +35,13 @@
  ┃  ┃  ┗━ (d) data/				... (minio) バケットが作成される共用ディレク
  ┃  ┃	
  ┃  ┃   /* op コンテナ用 */
- ┃  ┗━ (d) op/					... (op) 不要。appデータへ統一したため不要となりました
+ ┃  ┗━ (d) op/
+ ┃     ┃
+ ┃     ┗━ (d) cron.d/				... (op) /docker-entrypoint-cron.d/
+ ┃        ┃  
+ ┃        ┣━ (f) cron.sh			... /etc/rc.local にて実行定義。ユーザを指定する場合は要修正
+ ┃        ┃
+ ┃        ┗━ (f) {user}				... テキストは改行コードに注意。^M (CR) だと動作しません。
  ┃
  ┃   /* ホスト <-> コンテナ間データ共有用に用意 */	
  ┗━ (d) share/ 
@@ -118,6 +124,17 @@ MINIO_ROOT_PASSWORD=minio123
 endpoint = http://minio:9000
 key	 = minio
 secret	 = minio123
+```
+## OP コンテナ注意点 ( cron )
+定期実行指定の cron テキスト、改行コードが ^M (CR) の場合、crontab に反映されません。<br>
+～ bad minute 判定となり、cron 定期実行が正常動作しなくなります。<br>
+cron テキスト修正した場合は、以下でエラーが出ないか確認した方がよいかも。<br>
+```
+[op]# crontab -u {user} {txt}
+```
+```
+/lib/systemd/system/rc-local.service
+-> After=network.target crond.service
 ```
 
 #### URL
