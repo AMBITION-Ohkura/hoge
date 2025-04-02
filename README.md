@@ -133,9 +133,10 @@ http://localhost:28025/
 
 ### for minio
 http://localhost:39001/
+```
 id : minio
 pw : minio123
-
+```
 
 ### 削除 Admin * OPの管理画面使用のため不要とのこと
 http://localhost:28080/
