@@ -99,11 +99,11 @@ mysql> FLUSH PRIVILEGES;
 /etc/rc.local ( perm 0755 )
 -> /bin/sh /docker-entrypoint-initdb.d/init_db.sh
 ```
-
-2025/03/31 時点のデータ 2.reforest.insert.sql 19MB<br>
+### 2.reforest.insert.sql ( 19MB )
+2025/03/31 時点のデータとなります。<br>
 コンテナ起動から流し込み完了まで、3分程かかります。<br>
 mysqldump 時に --skip-extended-insert を使用しているので、<br>
-1行出力やめればもっと早くはなります。
+1行出力やめればもっと早くなるかも。<br>
 
 ## minio コンテナ注意点
 docker-compose.yml 指定の環境変数が以下非推奨となり指定しても使用できません。
