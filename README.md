@@ -159,9 +159,11 @@ http://localhost:28080/
 
 ## 修正 fuelphp
 #### mhsendmail では使用できないオプションがあるためオプションを削除する。
+
+<pre>
 /var/www/forest/bundle/lib/fuel/packages/email/classes/email/driver/mail.php
 30c30
 <               if ( ! @mail(static::format_addresses($this->to), $this->subject, $message['body'], $message['header'], '-oi -f '.$return_path))
 ---
 >               if ( ! @mail(static::format_addresses($this->to), $this->subject, $message['body'], $message['header']))
-
+</pre>
