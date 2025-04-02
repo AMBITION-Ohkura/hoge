@@ -107,7 +107,7 @@ mysql> FLUSH PRIVILEGES;
 mysqldump 時に --skip-extended-insert を使用しているので、<br>
 1行出力やめればもっと早くなるかも。<br>
 
-## minio コンテナ注意点
+## minio コンテナ注意点 ( S3互換 )
 docker-compose.yml 指定の環境変数が以下非推奨となり指定しても使用できません。
 
 ##### 非推奨
