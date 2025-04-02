@@ -1,7 +1,9 @@
 # ForestPlus
 
-本番サーバは 2025/03/24 時点のデータをイメージ化し、単一で動作するように調整。
+  app && op サーバは 25' 03/24 本番データを使用しています。
 
+
+## ディレクトリ構成
 <pre>
   /* ルートディレクトリ */
  (d) forestplus/
@@ -35,7 +37,7 @@
  ┃  ┃   /* minio コンテナ用 S3互換環境構築 */
  ┃  ┣━ (d) minio/
  ┃  ┃  ┃
- ┃  ┃  ┗━ (d) data/					... (minio) バケットが作成される共用ディレク
+ ┃  ┃  ┗━ (d) data/				... (minio) バケットが作成される共用ディレク
  ┃  ┃	
  ┃  ┃   /* op コンテナ用 */
  ┃  ┗━ (d) op/					... (op) 不要。appデータへ統一したため不要となりました
@@ -45,12 +47,10 @@
  ┗━ (d) share/ 
      ┃     
      ┃
-     ┣━ (d) ./app/					... (app) /mnt
+     ┣━ (d) ./app/				... (app) /mnt
      ┃
-     ┗━ (d) ./op/					... (op)  /mnt
-
+     ┗━ (d) ./op/				... (op)  /mnt
 </pre>
-
 
 #### docker イメージ登録 ( app 10min / op 5min )
 
@@ -79,7 +79,7 @@
   mysql> FLUSH PRIVILEGES;
 
 
-### app鯖、DBデータ
+#### app鯖、DBデータ
 
 （確認したこと）
  ・mysqlデータ領域を volumes: で共用使用とする場合、アクセス権限の問題で mysqld が起動できなくなる。
@@ -139,37 +139,29 @@ id : minio
 pw : minio123
 
 
-/* ---
-## Admin * OPの管理画面使用のため不要とのこと
+## 削除 Admin * OPの管理画面使用のため不要とのこと
 http://localhost:28080/
---- */
 
+## system memo ( app && op )
 
-### system memo ( app && op )
-
-## MailHog 用 mhsendmail インストール
+#### MailHog 用 mhsendmail インストール
 [forestp]# curl -sSL https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o /usr/local/bin/mhsendmail
 
 [forestp]# chmod +x /usr/local/bin/mhsendmail
 
 
-## php-fpm php で使用するメールを mhsendmail へ変更
+#### php-fpm php で使用するメールを mhsendmail へ変更
 /etc/php.ini
 982c982
 < sendmail_path = /usr/sbin/sendmail -t -i
 ---
 > sendmail_path = "/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025"
 
-## fuelphp
-## mhsendmail では使用できないオプションがあるためオプションを削除する。
+## 修正 fuelphp
+#### mhsendmail では使用できないオプションがあるためオプションを削除する。
 /var/www/forest/bundle/lib/fuel/packages/email/classes/email/driver/mail.php
 30c30
 <               if ( ! @mail(static::format_addresses($this->to), $this->subject, $message['body'], $message['header'], '-oi -f '.$return_path))
 ---
 >               if ( ! @mail(static::format_addresses($this->to), $this->subject, $message['body'], $message['header']))
 
-
-
-
-
-oge
