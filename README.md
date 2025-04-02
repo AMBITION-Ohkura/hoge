@@ -99,19 +99,19 @@ mysqldump 時に --skip-extended-insert を使用しているので、<br>
 #### minio
 docker-compose.yml 指定の環境変数が以下非推奨となり指定しても使用できません。
 
-#### 非推奨
+##### 非推奨
 ```
 MINIO_ACCESS_KEY={xxxxxxxxxxxxxxxx}
 MINIO_SECRET_KEY={xxxxxxxxxxxxxxxx}
 ```
 
-#### 管理画面用アカウント
+##### 管理画面用アカウント
 ```
 MINIO_ROOT_USER=minio
 MINIO_ROOT_PASSWORD=minio123
 ```
 
-#### 接続先設定参考
+##### 接続先設定参考
 ```
 endpoint = http://minio:9000
 key	 = minio
