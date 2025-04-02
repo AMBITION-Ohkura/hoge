@@ -119,26 +119,27 @@ secret	 = minio123
 ```
 
 #### URL
-### Top
+## Top
 https://localhost:20443/
 
-### OP (admin)
+## OP (admin)
 http://localhost:38080/
 
-### phpMyAdmin
+## phpMyAdmin
 http://localhost:23380/
 
-### for MailHog
+## for MailHog
 http://localhost:28025/
 
-### for minio
+## for minio
 http://localhost:39001/
 ```
 id : minio
 pw : minio123
 ```
 
-### 削除 Admin * OPの管理画面使用のため不要とのこと
+#### 削除 Admin * OPの管理画面使用のため不要とのこと
+## App (admin)
 http://localhost:28080/
 
 ### system memo ( app && op )
