@@ -76,11 +76,11 @@ mysql> FLUSH PRIVILEGES;
 
 #### app鯖、DBデータ
 
-## 確認したこと
+#### 確認したこと
  * mysqlデータ領域を volumes: で共用使用とする場合、アクセス権限の問題で mysqld が起動できなくなる。
  * systemctl で sql テキストを流し込んだ場合、テーブル定義は読み込み完了するも、INSERTデータが大きいと流し込み完了する前に終了してしまう。
 
-# 対応
+#### 対応
 非推奨ではあるが、/etc/rc.local からの実行が複数回の事項ですべて流し込み完了を確認。
 
 /lib/systemd/system/rc-local.service<br>
@@ -119,35 +119,34 @@ secret	 = minio123
 ```
 
 #### URL
-## Top
+### Top
 https://localhost:20443/
 
-## OP (admin)
+### OP (admin)
 http://localhost:38080/
 
-## phpMyAdmin
+### phpMyAdmin
 http://localhost:23380/
 
-## for MailHog
+### for MailHog
 http://localhost:28025/
 
-## for minio
+### for minio
 http://localhost:39001/
 id : minio
 pw : minio123
 
 
-## 削除 Admin * OPの管理画面使用のため不要とのこと
+### 削除 Admin * OPの管理画面使用のため不要とのこと
 http://localhost:28080/
 
-## system memo ( app && op )
+### system memo ( app && op )
 
 #### MailHog 用 mhsendmail インストール
 ```
 [forestp]# curl -sSL https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o /usr/local/bin/mhsendmail
 [forestp]# chmod +x /usr/local/bin/mhsendmail
 ```
-
 
 #### php-fpm php で使用するメールを mhsendmail へ変更
 ```
@@ -158,8 +157,8 @@ http://localhost:28080/
 > sendmail_path = "/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025"
 ```
 
-## 修正 fuelphp
-#### mhsendmail では使用できないオプションがあるためオプションを削除する。
+#### fuelphp 修正箇所
+mhsendmail では使用できないオプションがあるためオプションを削除する。
 ```
 [forestp]# vi /var/www/forest/bundle/lib/fuel/packages/email/classes/email/driver/mail.php
 30c30
