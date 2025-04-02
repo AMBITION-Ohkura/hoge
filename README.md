@@ -135,6 +135,7 @@ cron テキスト修正した場合は、以下でエラーが出ないか確認
 ```
 [op]# crontab -u {user} {txt}
 ```
+* crond が起動完了してから rc.local を実行へ修正
 ```
 /lib/systemd/system/rc-local.service
 -> After=network.target crond.service
