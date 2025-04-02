@@ -66,18 +66,20 @@
 [ubuntu]# mysql -h 127.0.0.1 -P 23306 -uroot -p{PASSWD} --ssl-mode=DISABLED
 
 
+
+```
+[ubuntu]# mysql -h 127.0.0.1 -P 23306 -uroot -pVworks%3314 --ssl-mode=DISABLED
+```
 * root(PASSWD) : Vworks%3314
-  ex) [ubuntu]# mysql -h 127.0.0.1 -P 23306 -uroot -pVworks%3314 --ssl-mode=DISABLED
-  ( mysql-client 8.0 使用の場合sslモードを無効にして接続する。 )
+* mysql-client 8.0 使用の場合sslモードを無効にして接続する。
+* コンテナ備考) root アクセス許可のため、mysql.user へ root ユーザ修正済み
 
-* (コンテナ備考)
-  root アクセス許可のため、mysql.user へ root ユーザ修正済み
-
-  mysql> USE mysql;
-  mysql> CREATE user 'root'@'%' IDENTIFIED BY 'Vworks%3314';
-  mysql> GRANT ALL PRIVILEGES ON * . * TO 'root'@'%' WITH GRANT OPTION;
-  mysql> FLUSH PRIVILEGES;
-
+```
+mysql> USE mysql;
+mysql> CREATE user 'root'@'%' IDENTIFIED BY 'Vworks%3314';
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'root'@'%' WITH GRANT OPTION;
+mysql> FLUSH PRIVILEGES;
+```
 
 #### app鯖、DBデータ
 
