@@ -1,7 +1,5 @@
 # ForestPlus
-
   app && op サーバは 25' 03/24 本番データを使用しています。
-
 
 ## ディレクトリ構成
 <pre>
@@ -53,10 +51,12 @@
 </pre>
 
 #### docker イメージ登録 ( app 10min / op 5min )
-
+```
 [ubuntu]# sh install-img.sh
-
+```
+```
 [ubuntu]# docker-compose up -d
+```
 
 各サービスの起動完了まで初回 4～5 分程度かかります。
 10分経過して各サービスに接続できないようであれば正常動作していない可能性大。
@@ -145,7 +145,9 @@ http://localhost:28080/
 ## system memo ( app && op )
 
 #### MailHog 用 mhsendmail インストール
+```
 [forestp]# curl -sSL https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o /usr/local/bin/mhsendmail
+```
 
 [forestp]# chmod +x /usr/local/bin/mhsendmail
 
