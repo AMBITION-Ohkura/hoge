@@ -138,10 +138,6 @@ id : minio
 pw : minio123
 ```
 
-#### 削除 Admin * OPの管理画面使用のため不要とのこと
-## App (admin)
-http://localhost:28080/
-
 ### system memo ( app && op )
 
 #### MailHog 用 mhsendmail インストール
